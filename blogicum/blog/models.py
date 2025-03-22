@@ -28,8 +28,6 @@ class Post(PublishedModel):
     category = models.ForeignKey(
         "Category",
         on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
         verbose_name="Категория",
     )
     created_at = models.DateTimeField(

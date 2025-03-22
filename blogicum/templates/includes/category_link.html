@@ -1,0 +1,5 @@
+{% if post.category and post.category.slug %}
+  <a class="text-muted" href="{% url 'blog:category_posts' post.category.slug %}">
+    {{ post.category.title }}
+  </a>
+{% endif %}

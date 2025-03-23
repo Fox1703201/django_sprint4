@@ -23,9 +23,9 @@ urlpatterns = [
     path("profile/", include("users.urls", namespace="users")),
 ]
 
-handler404 = "core.views.error_404"
-handler405 = "core.views.error_405"
-handler500 = "core.views.error_500"
+handler404 = "pages.views.error_404"
+handler405 = "pages.views.error_405"
+handler500 = "pages.views.error_500"
 
 if settings.DEBUG:
     urlpatterns += static(

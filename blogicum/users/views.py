@@ -1,11 +1,12 @@
-from django.views.generic import DetailView, UpdateView
-from django.urls import reverse_lazy
-from django.contrib.auth.models import User
-from django.shortcuts import get_object_or_404
-from blog.models import Post
-from django.core.paginator import Paginator
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
+from django.core.paginator import Paginator
 from django.db.models import Count
+from django.shortcuts import get_object_or_404
+from django.urls import reverse_lazy
+from django.views.generic import DetailView, UpdateView
+
+from blog.models import Post
 
 
 class ProfileView(DetailView):

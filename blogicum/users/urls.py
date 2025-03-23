@@ -1,6 +1,7 @@
-from django.urls import path
-from .views import ProfileView, ProfileEditView
 from django.contrib.auth.views import PasswordChangeView
+from django.urls import path
+
+from .views import ProfileEditView, ProfileView
 
 app_name = "users"
 

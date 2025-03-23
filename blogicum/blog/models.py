@@ -1,6 +1,7 @@
-from django.db import models
-from core.models import PublishedModel
 from django.contrib.auth import get_user_model
+from django.db import models
+
+from core.models import PublishedModel
 
 User = get_user_model()
 
@@ -16,7 +17,10 @@ class Post(PublishedModel):
         ),
     )
     author = models.ForeignKey(
-        User, on_delete=models.CASCADE, verbose_name="Автор публикации"
+        User,
+        on_delete=models.CASCADE,
+        verbose_name="Автор публикации",
+        related_name="posts",
     )
     location = models.ForeignKey(
         "Location",
@@ -24,18 +28,22 @@ class Post(PublishedModel):
         null=True,
         blank=True,
         verbose_name="Местоположение",
+        related_name="posts",
     )
     category = models.ForeignKey(
         "Category",
         on_delete=models.SET_NULL,
         verbose_name="Категория",
+        related_name="posts",
     )
     created_at = models.DateTimeField(
         auto_now_add=True, verbose_name="Добавлено"
     )
 
     image = models.ImageField(
-        verbose_name="Изображение", upload_to="posts", blank=True, null=True
+        verbose_name="Изображение",
+        upload_to="posts",
+        blank=True,
     )
 
     class Meta:
@@ -86,14 +94,26 @@ class Location(PublishedModel):
 
 class Comment(models.Model):
     post = models.ForeignKey(
-        Post, on_delete=models.CASCADE, related_name="comments"
+        Post,
+        on_delete=models.CASCADE,
+        related_name="comments",
+        verbose_name="Публикация",
     )
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="comments",
+        verbose_name="Автор",
+    )
     text = models.TextField(verbose_name="Комментарий")
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(
+        auto_now_add=True, verbose_name="Добавлено"
+    )
 
     class Meta:
         ordering = ["created_at"]
+        verbose_name = "комментарий"
+        verbose_name_plural = "Комментарии"
 
     def __str__(self):
         return f"Коммент {self.author} к посту {self.post}"

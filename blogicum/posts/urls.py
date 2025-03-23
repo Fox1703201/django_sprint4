@@ -1,11 +1,12 @@
 from django.urls import path
+
 from . import views
 from .views import (
-    PostCreateView,
-    PostEditView,
-    PostDeleteView,
-    CommentEditView,
     CommentDeleteView,
+    CommentEditView,
+    PostCreateView,
+    PostDeleteView,
+    PostEditView,
     add_comment,
 )
 

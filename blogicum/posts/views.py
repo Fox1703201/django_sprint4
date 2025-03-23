@@ -1,13 +1,14 @@
-from django.shortcuts import render, get_object_or_404
-from blog.models import Post, Comment
-from django.utils.timezone import now
-from django.views.generic import CreateView, UpdateView, DeleteView
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from .forms import PostForm, CommentForm
-from django.urls import reverse_lazy
-from django.shortcuts import redirect
-from django.db.models import Q
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.db.models import Q
+from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse_lazy
+from django.utils.timezone import now
+from django.views.generic import CreateView, DeleteView, UpdateView
+
+from blog.models import Comment, Post
+
+from .forms import CommentForm, PostForm
 
 
 def post_detail(request, id):
